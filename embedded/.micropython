@@ -1,0 +1,4 @@
+# MicroPython project configuration
+PORT=/dev/ttyACM0
+# BAUD is optional - mpremote auto-detects, but can be set for edge cases
+BAUD=115200

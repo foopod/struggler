@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://dpoq8unk2jhp6" path="res://sounds/struggle_2.wav" id="29_d2t1y"]
 [ext_resource type="Texture2D" uid="uid://dgk3kctgy7hp7" path="res://killer_sprites.tres" id="29_qsp4k"]
 [ext_resource type="AudioStream" uid="uid://4rrw1lauuym" path="res://music/Song1.wav" id="30_kq58d"]
+[ext_resource type="Script" uid="uid://ce1itfkwerlpb" path="res://scripts/serial.gd" id="29_qsp4k"]
 [ext_resource type="Texture2D" uid="uid://djetbny1gk6lv" path="res://door.tres" id="30_seu75"]
 [ext_resource type="AudioStream" uid="uid://caf54veogakl6" path="res://sounds/wash.wav" id="32_0rl1p"]
 [ext_resource type="Texture2D" uid="uid://csuv2nha7jfwu" path="res://art/wall_overlay.png" id="32_jq2sk"]
@@ -290,103 +291,78 @@ font = ExtResource("27_a6jrf")
 font_size = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ovcoh"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4obbf"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(416, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1p13"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(448, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_birbe"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(480, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sm6fg"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_come4"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h8e4i"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4lmeg"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_blkrb"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(512, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abqjc"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(544, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6iyjs"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(576, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4w656"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(608, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e71vb"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(640, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rnkwl"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(672, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vke2r"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(704, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uit24"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(736, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ruth0"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(768, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_seu75"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_htxhm"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jq2sk"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4k2k6"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0rl1p"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ok6jj"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_facbu"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1qrp"]
-atlas = ExtResource("29_qsp4k")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mx73m"]
@@ -859,3 +835,7 @@ position = Vector2(182, 57)
 stream = ExtResource("30_kq58d")
 volume_db = -10.0
 autoplay = true
+
+[node name="Serial" type="Node" parent="." unique_id=1746652647]
+unique_name_in_owner = true
+script = ExtResource("29_qsp4k")

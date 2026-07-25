@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bi05kdejtsn4l"]
 
 [ext_resource type="Texture2D" uid="uid://bw42t7fdlrl3u" path="res://art/bg.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cjivbhlkatyni" path="res://art/light.png" id="2_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://csvn7u2g6n2bp" path="res://art/dirty_box_normal.png" id="3_cegan"]
 [ext_resource type="Texture2D" uid="uid://cc1214yy7unhb" path="res://art/dirty_box.png" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://brqwks2hvyt6g" path="res://art/tied-up.png" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://csdk80hp2xnjj" path="res://art/light_normal.png" id="3_xuqvo"]
 [ext_resource type="Texture2D" uid="uid://cdmwy5xtfakgo" path="res://art/short_box.png" id="5_5vw27"]
 [ext_resource type="Texture2D" uid="uid://cadqh2ocgpqru" path="res://art/short_box_normal.png" id="5_82xsv"]
 [ext_resource type="Texture2D" uid="uid://dbt4t0vtdtla" path="res://art/small_box.png" id="6_kek77"]
@@ -14,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://dirp4plu0f4ot" path="res://art/can_normal.png" id="11_cegan"]
 [ext_resource type="Texture2D" uid="uid://cljyomc67mhak" path="res://art/can_blue_rust.png" id="11_vivmo"]
 [ext_resource type="Texture2D" uid="uid://c17eofr3wmwm3" path="res://art/can_green_rust.png" id="12_2cqfq"]
-[ext_resource type="Texture2D" uid="uid://dvmj1layvlml1" path="res://art/tied-up_normal.png" id="12_vivmo"]
 [ext_resource type="Texture2D" uid="uid://5pi5ikxpxa8e" path="res://art/tiny_box.png" id="13_w48qg"]
 [ext_resource type="Texture2D" uid="uid://t5hbm0fmdior" path="res://art/can_brown.png" id="13_yaehf"]
 [ext_resource type="Texture2D" uid="uid://cbjvnp8g28l3r" path="res://art/tiny_box_dirty.png" id="14_vivmo"]
@@ -25,9 +25,14 @@
 [ext_resource type="Texture2D" uid="uid://b3ddein1jkl0l" path="res://art/pipe_corner_normal.png" id="21_xuqvo"]
 [ext_resource type="Texture2D" uid="uid://bmq1mtgm602bs" path="res://art/pipe_h.png" id="22_qsp4k"]
 [ext_resource type="Texture2D" uid="uid://cank7lni17sp" path="res://art/pipe_h_normal.png" id="23_kq58d"]
+[ext_resource type="Texture2D" uid="uid://nxtno63tr5d3" path="res://player_sprites.tres" id="26_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://gnhte7tmryuf" path="res://art/rope_noose_normal.png" id="26_lswn8"]
 [ext_resource type="FontFile" uid="uid://c1vjcnm5kwj8e" path="res://fonts/DepartureMono-1.500/DepartureMono-Regular.otf" id="27_a6jrf"]
-[ext_resource type="Texture2D" uid="uid://bban26tmu20qw" path="res://art/tied-up-sheet.png" id="28_xuqvo"]
+[ext_resource type="Texture2D" uid="uid://dretry3rxuuc6" path="res://art/button.png" id="28_qsp4k"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qsp4k"]
+diffuse_texture = ExtResource("2_a6jrf")
+normal_texture = ExtResource("3_xuqvo")
 
 [sub_resource type="Gradient" id="Gradient_vivmo"]
 offsets = PackedFloat32Array(0, 0.62650603)
@@ -81,10 +86,6 @@ normal_texture = ExtResource("11_cegan")
 diffuse_texture = ExtResource("12_2cqfq")
 normal_texture = ExtResource("11_cegan")
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_w48qg"]
-diffuse_texture = ExtResource("4_7mycd")
-normal_texture = ExtResource("12_vivmo")
-
 [sub_resource type="CanvasTexture" id="CanvasTexture_cegan"]
 diffuse_texture = ExtResource("13_yaehf")
 normal_texture = ExtResource("11_cegan")
@@ -101,38 +102,38 @@ normal_texture = ExtResource("15_2cqfq")
 diffuse_texture = ExtResource("7_4c57u")
 normal_texture = ExtResource("26_lswn8")
 
-[sub_resource type="LabelSettings" id="LabelSettings_osn8f"]
-font = ExtResource("27_a6jrf")
-font_size = 11
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qsp4k"]
-atlas = ExtResource("28_xuqvo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuqvo"]
+atlas = ExtResource("26_a6jrf")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kq58d"]
-atlas = ExtResource("28_xuqvo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsp4k"]
+atlas = ExtResource("26_a6jrf")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_seu75"]
-atlas = ExtResource("28_xuqvo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq58d"]
+atlas = ExtResource("26_a6jrf")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_osn8f"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xuqvo")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qsp4k")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kq58d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_seu75")
 }],
 "loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_osn8f"]
+font = ExtResource("27_a6jrf")
+font_size = 8
 
 [node name="Node2D" type="Node2D" unique_id=1019301833]
 
@@ -141,8 +142,12 @@ texture_filter = 1
 position = Vector2(73, 40)
 texture = ExtResource("1_ig7tw")
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1508775983]
-position = Vector2(59, 35)
+[node name="Light" type="Sprite2D" parent="." unique_id=32711127]
+position = Vector2(67, 22)
+texture = SubResource("CanvasTexture_qsp4k")
+
+[node name="PointLight2D" type="PointLight2D" parent="Light" unique_id=1508775983]
+position = Vector2(0, 12)
 color = Color(1, 1, 0.77254903, 1)
 energy = 2.0
 texture = SubResource("GradientTexture2D_osn8f")
@@ -174,50 +179,6 @@ texture = SubResource("CanvasTexture_lswn8")
 
 [node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2" unique_id=937500754]
 position = Vector2(114, 24)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH" unique_id=771940808]
-position = Vector2(-11, -17)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH" unique_id=1021470654]
-position = Vector2(16, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH" unique_id=685464662]
-position = Vector2(16, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH" unique_id=1755986332]
-position = Vector2(16, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH" unique_id=432132677]
-position = Vector2(-80, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH" unique_id=93853963]
-position = Vector2(16, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH2" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH" unique_id=1506674716]
-position = Vector2(-16, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2" unique_id=1959975958]
-position = Vector2(-16, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH" unique_id=1789359614]
-position = Vector2(-16, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH/PipeH" unique_id=173886498]
-position = Vector2(-16, 0)
-texture = SubResource("CanvasTexture_osn8f")
-
-[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH/PipeH/PipeH" unique_id=1993786955]
-position = Vector2(-11, 0)
 texture = SubResource("CanvasTexture_osn8f")
 
 [node name="PipeH2" type="Sprite2D" parent="Pipes/Pipes2" unique_id=600183353]
@@ -253,12 +214,8 @@ position = Vector2(22, 68)
 texture = SubResource("CanvasTexture_getpj")
 
 [node name="CanGreenRust" type="Sprite2D" parent="." unique_id=1250543468]
-position = Vector2(72, 42)
+position = Vector2(81, 58)
 texture = SubResource("CanvasTexture_d13ii")
-
-[node name="TiedUp" type="Sprite2D" parent="." unique_id=1929468225]
-position = Vector2(52, 61)
-texture = SubResource("CanvasTexture_w48qg")
 
 [node name="CanBrown" type="Sprite2D" parent="." unique_id=1763985832]
 position = Vector2(24, 61)
@@ -284,6 +241,51 @@ texture = SubResource("CanvasTexture_vivmo")
 color = Color(0.4756503, 0.37458718, 0.29070678, 1)
 
 [node name="Hanging" type="Node2D" parent="." unique_id=12227695]
+position = Vector2(-4, -13)
+
+[node name="PipeH" type="Sprite2D" parent="Hanging" unique_id=771940808]
+position = Vector2(104, 16)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH" unique_id=1021470654]
+position = Vector2(16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH/PipeH" unique_id=685464662]
+position = Vector2(16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH/PipeH/PipeH" unique_id=1755986332]
+position = Vector2(16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH/PipeH/PipeH/PipeH" unique_id=432132677]
+position = Vector2(-80, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH/PipeH/PipeH/PipeH/PipeH" unique_id=93853963]
+position = Vector2(16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH2" type="Sprite2D" parent="Hanging/PipeH/PipeH/PipeH/PipeH/PipeH" unique_id=1506674716]
+position = Vector2(-16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2" unique_id=1959975958]
+position = Vector2(-16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH" unique_id=1789359614]
+position = Vector2(-16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH/PipeH" unique_id=173886498]
+position = Vector2(-16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Hanging/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH/PipeH/PipeH" unique_id=1993786955]
+position = Vector2(-11, 0)
+texture = SubResource("CanvasTexture_osn8f")
 
 [node name="Rope" type="Sprite2D" parent="Hanging" unique_id=645683985]
 position = Vector2(103, 22)
@@ -299,16 +301,23 @@ texture = ExtResource("8_efxa6")
 position = Vector2(34, 30)
 texture = SubResource("CanvasTexture_xuqvo")
 
-[node name="Label" type="Label" parent="." unique_id=646719756]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=887781086]
+position = Vector2(54, 60)
+sprite_frames = SubResource("SpriteFrames_osn8f")
+autoplay = "default"
+frame_progress = 0.79532367
+
+[node name="Text" type="Node2D" parent="." unique_id=1467586237]
+
+[node name="Button" type="Sprite2D" parent="Text" unique_id=817845836]
+position = Vector2(100, 64)
+texture = ExtResource("28_qsp4k")
+
+[node name="Struggle" type="Label" parent="Text/Button" unique_id=646719756]
 texture_filter = 1
-offset_left = 76.0
-offset_top = 30.0
-offset_right = 136.0
-offset_bottom = 46.0
+offset_left = -22.0
+offset_top = -5.0
+offset_right = 34.0
+offset_bottom = 9.0
 text = "struggle"
 label_settings = SubResource("LabelSettings_osn8f")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=887781086]
-position = Vector2(70, 60)
-sprite_frames = SubResource("SpriteFrames_osn8f")
-frame_progress = 0.15573674

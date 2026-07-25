@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://nxtno63tr5d3"]
+
+[ext_resource type="Texture2D" uid="uid://bban26tmu20qw" path="res://art/tied-up-sheet.png" id="1_dk5hq"]
+[ext_resource type="Texture2D" uid="uid://b0tenk4qn5jh8" path="res://art/tied-up-sheet_normal.png" id="2_2wqdj"]
+
+[resource]
+diffuse_texture = ExtResource("1_dk5hq")
+normal_texture = ExtResource("2_2wqdj")

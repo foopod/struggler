@@ -1,0 +1,314 @@
+[gd_scene format=3 uid="uid://bi05kdejtsn4l"]
+
+[ext_resource type="Texture2D" uid="uid://bw42t7fdlrl3u" path="res://art/bg.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://csvn7u2g6n2bp" path="res://art/dirty_box_normal.png" id="3_cegan"]
+[ext_resource type="Texture2D" uid="uid://cc1214yy7unhb" path="res://art/dirty_box.png" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://brqwks2hvyt6g" path="res://art/tied-up.png" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://cdmwy5xtfakgo" path="res://art/short_box.png" id="5_5vw27"]
+[ext_resource type="Texture2D" uid="uid://cadqh2ocgpqru" path="res://art/short_box_normal.png" id="5_82xsv"]
+[ext_resource type="Texture2D" uid="uid://dbt4t0vtdtla" path="res://art/small_box.png" id="6_kek77"]
+[ext_resource type="Texture2D" uid="uid://dta1wgmt0ido4" path="res://art/rope_noose.png" id="7_4c57u"]
+[ext_resource type="Texture2D" uid="uid://giue2h7p7cse" path="res://art/small_box_normal.png" id="7_getpj"]
+[ext_resource type="Texture2D" uid="uid://c657n7mpnj3v3" path="res://art/rope.png" id="8_efxa6"]
+[ext_resource type="Texture2D" uid="uid://c1hnkmey8862k" path="res://art/can_blue.png" id="9_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://dirp4plu0f4ot" path="res://art/can_normal.png" id="11_cegan"]
+[ext_resource type="Texture2D" uid="uid://cljyomc67mhak" path="res://art/can_blue_rust.png" id="11_vivmo"]
+[ext_resource type="Texture2D" uid="uid://c17eofr3wmwm3" path="res://art/can_green_rust.png" id="12_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://dvmj1layvlml1" path="res://art/tied-up_normal.png" id="12_vivmo"]
+[ext_resource type="Texture2D" uid="uid://5pi5ikxpxa8e" path="res://art/tiny_box.png" id="13_w48qg"]
+[ext_resource type="Texture2D" uid="uid://t5hbm0fmdior" path="res://art/can_brown.png" id="13_yaehf"]
+[ext_resource type="Texture2D" uid="uid://cbjvnp8g28l3r" path="res://art/tiny_box_dirty.png" id="14_vivmo"]
+[ext_resource type="Texture2D" uid="uid://bwhplb4vk1a4k" path="res://art/tiny_box_dirty_normal.png" id="15_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://cdqyg6tge7yk5" path="res://art/pipe_v.png" id="18_0odxb"]
+[ext_resource type="Texture2D" uid="uid://bplfvaghxsnw" path="res://art/pipe_v_normal.png" id="19_lswn8"]
+[ext_resource type="Texture2D" uid="uid://krrwayn8ch5x" path="res://art/pipe_corner.png" id="20_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://b3ddein1jkl0l" path="res://art/pipe_corner_normal.png" id="21_xuqvo"]
+[ext_resource type="Texture2D" uid="uid://bmq1mtgm602bs" path="res://art/pipe_h.png" id="22_qsp4k"]
+[ext_resource type="Texture2D" uid="uid://cank7lni17sp" path="res://art/pipe_h_normal.png" id="23_kq58d"]
+[ext_resource type="Texture2D" uid="uid://gnhte7tmryuf" path="res://art/rope_noose_normal.png" id="26_lswn8"]
+[ext_resource type="FontFile" uid="uid://c1vjcnm5kwj8e" path="res://fonts/DepartureMono-1.500/DepartureMono-Regular.otf" id="27_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://bban26tmu20qw" path="res://art/tied-up-sheet.png" id="28_xuqvo"]
+
+[sub_resource type="Gradient" id="Gradient_vivmo"]
+offsets = PackedFloat32Array(0, 0.62650603)
+colors = PackedColorArray(0.6255971, 0.6255971, 0.6255971, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_osn8f"]
+gradient = SubResource("Gradient_vivmo")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_a6jrf"]
+diffuse_texture = ExtResource("20_a6jrf")
+normal_texture = ExtResource("21_xuqvo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lswn8"]
+diffuse_texture = ExtResource("18_0odxb")
+normal_texture = ExtResource("19_lswn8")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_osn8f"]
+diffuse_texture = ExtResource("22_qsp4k")
+normal_texture = ExtResource("23_kq58d")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yaehf"]
+diffuse_texture = ExtResource("3_lquwl")
+normal_texture = ExtResource("3_cegan")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_074og"]
+diffuse_texture = ExtResource("5_5vw27")
+normal_texture = ExtResource("5_82xsv")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_82xsv"]
+diffuse_texture = ExtResource("6_kek77")
+normal_texture = ExtResource("7_getpj")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0odxb"]
+diffuse_texture = ExtResource("9_ycdy4")
+normal_texture = ExtResource("11_cegan")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ryguw"]
+diffuse_texture = ExtResource("12_2cqfq")
+normal_texture = ExtResource("11_cegan")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_getpj"]
+diffuse_texture = ExtResource("11_vivmo")
+normal_texture = ExtResource("11_cegan")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_d13ii"]
+diffuse_texture = ExtResource("12_2cqfq")
+normal_texture = ExtResource("11_cegan")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w48qg"]
+diffuse_texture = ExtResource("4_7mycd")
+normal_texture = ExtResource("12_vivmo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cegan"]
+diffuse_texture = ExtResource("13_yaehf")
+normal_texture = ExtResource("11_cegan")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2cqfq"]
+diffuse_texture = ExtResource("13_w48qg")
+normal_texture = ExtResource("15_2cqfq")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vivmo"]
+diffuse_texture = ExtResource("14_vivmo")
+normal_texture = ExtResource("15_2cqfq")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xuqvo"]
+diffuse_texture = ExtResource("7_4c57u")
+normal_texture = ExtResource("26_lswn8")
+
+[sub_resource type="LabelSettings" id="LabelSettings_osn8f"]
+font = ExtResource("27_a6jrf")
+font_size = 11
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsp4k"]
+atlas = ExtResource("28_xuqvo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq58d"]
+atlas = ExtResource("28_xuqvo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seu75"]
+atlas = ExtResource("28_xuqvo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_osn8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsp4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq58d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seu75")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=1019301833]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1512751299]
+texture_filter = 1
+position = Vector2(73, 40)
+texture = ExtResource("1_ig7tw")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1508775983]
+position = Vector2(59, 35)
+color = Color(1, 1, 0.77254903, 1)
+energy = 2.0
+texture = SubResource("GradientTexture2D_osn8f")
+
+[node name="Pipes" type="Node2D" parent="." unique_id=1736225197]
+
+[node name="PipeCorner" type="Sprite2D" parent="Pipes" unique_id=1533237930]
+position = Vector2(103, 37)
+texture = SubResource("CanvasTexture_a6jrf")
+
+[node name="PipeV2" type="Sprite2D" parent="Pipes" unique_id=1645574104]
+position = Vector2(103, 53)
+texture = SubResource("CanvasTexture_lswn8")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes" unique_id=1148860494]
+position = Vector2(117, 37)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="Pipes2" type="Node2D" parent="Pipes" unique_id=2078234992]
+position = Vector2(1, 9)
+
+[node name="PipeCorner" type="Sprite2D" parent="Pipes/Pipes2" unique_id=1611483586]
+position = Vector2(98, 24)
+texture = SubResource("CanvasTexture_a6jrf")
+
+[node name="PipeV2" type="Sprite2D" parent="Pipes/Pipes2" unique_id=1859040726]
+position = Vector2(98, 40)
+texture = SubResource("CanvasTexture_lswn8")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2" unique_id=937500754]
+position = Vector2(114, 24)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH" unique_id=771940808]
+position = Vector2(-11, -17)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH" unique_id=1021470654]
+position = Vector2(16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH" unique_id=685464662]
+position = Vector2(16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH" unique_id=1755986332]
+position = Vector2(16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH" unique_id=432132677]
+position = Vector2(-80, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH" unique_id=93853963]
+position = Vector2(16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH2" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH" unique_id=1506674716]
+position = Vector2(-16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2" unique_id=1959975958]
+position = Vector2(-16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH" unique_id=1789359614]
+position = Vector2(-16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH/PipeH" unique_id=173886498]
+position = Vector2(-16, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH" type="Sprite2D" parent="Pipes/Pipes2/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH/PipeH2/PipeH/PipeH/PipeH" unique_id=1993786955]
+position = Vector2(-11, 0)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeH2" type="Sprite2D" parent="Pipes/Pipes2" unique_id=600183353]
+position = Vector2(116, 24)
+texture = SubResource("CanvasTexture_osn8f")
+
+[node name="PipeV" type="Sprite2D" parent="Pipes/Pipes2" unique_id=48971430]
+position = Vector2(98, 54)
+texture = SubResource("CanvasTexture_lswn8")
+
+[node name="DirtyBox" type="Sprite2D" parent="." unique_id=166534092]
+position = Vector2(72, 54)
+texture = SubResource("CanvasTexture_yaehf")
+
+[node name="ShortBox" type="Sprite2D" parent="." unique_id=597116552]
+position = Vector2(90, 56)
+texture = SubResource("CanvasTexture_074og")
+
+[node name="SmallBox" type="Sprite2D" parent="." unique_id=1658488676]
+position = Vector2(37, 54)
+texture = SubResource("CanvasTexture_82xsv")
+
+[node name="CanBlue" type="Sprite2D" parent="." unique_id=753570570]
+position = Vector2(81, 65)
+texture = SubResource("CanvasTexture_0odxb")
+
+[node name="Can" type="Sprite2D" parent="." unique_id=1385029740]
+position = Vector2(28, 66)
+texture = SubResource("CanvasTexture_ryguw")
+
+[node name="CanBlueRust" type="Sprite2D" parent="." unique_id=1810796692]
+position = Vector2(22, 68)
+texture = SubResource("CanvasTexture_getpj")
+
+[node name="CanGreenRust" type="Sprite2D" parent="." unique_id=1250543468]
+position = Vector2(72, 42)
+texture = SubResource("CanvasTexture_d13ii")
+
+[node name="TiedUp" type="Sprite2D" parent="." unique_id=1929468225]
+position = Vector2(52, 61)
+texture = SubResource("CanvasTexture_w48qg")
+
+[node name="CanBrown" type="Sprite2D" parent="." unique_id=1763985832]
+position = Vector2(24, 61)
+texture = SubResource("CanvasTexture_cegan")
+
+[node name="TinyBox2" type="Sprite2D" parent="." unique_id=188059530]
+position = Vector2(92, 53)
+texture = SubResource("CanvasTexture_2cqfq")
+
+[node name="TinyBox2" type="Sprite2D" parent="TinyBox2" unique_id=995771861]
+position = Vector2(7, 15)
+texture = SubResource("CanvasTexture_2cqfq")
+
+[node name="TinyBox" type="Sprite2D" parent="." unique_id=631678021]
+position = Vector2(34, 52)
+texture = SubResource("CanvasTexture_2cqfq")
+
+[node name="TinyBoxDirty" type="Sprite2D" parent="." unique_id=406615552]
+position = Vector2(36, 67)
+texture = SubResource("CanvasTexture_vivmo")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1195308561]
+color = Color(0.4756503, 0.37458718, 0.29070678, 1)
+
+[node name="Hanging" type="Node2D" parent="." unique_id=12227695]
+
+[node name="Rope" type="Sprite2D" parent="Hanging" unique_id=645683985]
+position = Vector2(103, 22)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+texture = ExtResource("8_efxa6")
+
+[node name="Rope2" type="Sprite2D" parent="Hanging" unique_id=1620458001]
+position = Vector2(22, 22)
+texture = ExtResource("8_efxa6")
+
+[node name="RopeNoose" type="Sprite2D" parent="Hanging" unique_id=90041588]
+position = Vector2(34, 30)
+texture = SubResource("CanvasTexture_xuqvo")
+
+[node name="Label" type="Label" parent="." unique_id=646719756]
+texture_filter = 1
+offset_left = 76.0
+offset_top = 30.0
+offset_right = 136.0
+offset_bottom = 46.0
+text = "struggle"
+label_settings = SubResource("LabelSettings_osn8f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=887781086]
+position = Vector2(70, 60)
+sprite_frames = SubResource("SpriteFrames_osn8f")
+frame_progress = 0.15573674

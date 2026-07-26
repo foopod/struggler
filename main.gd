@@ -53,10 +53,12 @@ func _process(delta: float) -> void:
 	print("noise: ", noise, "  state: ", enemy_state)
 
 func _input(event):
-	if !is_player_dead && event.is_action_pressed("struggle"):
+	if !is_player_dead && !is_player_free && event.is_action_pressed("struggle"):
 		player.struggle()
 		player.play_struggle_sound()
 		add_noise(10)
+		await get_tree().create_timer(2).timeout
+		player.free_player()
 
 func add_noise(amount: float) -> void:
 	noise += amount

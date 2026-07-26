@@ -32,8 +32,10 @@
 [ext_resource type="Script" uid="uid://do8pwwxd7o4i1" path="res://player.gd" id="28_seu75"]
 [ext_resource type="AudioStream" uid="uid://dpoq8unk2jhp6" path="res://sounds/struggle_2.wav" id="29_d2t1y"]
 [ext_resource type="Texture2D" uid="uid://dgk3kctgy7hp7" path="res://killer_sprites.tres" id="29_qsp4k"]
+[ext_resource type="Texture2D" uid="uid://bwm5wxmhbbjsd" path="res://art/chair.png" id="30_0n3wm"]
 [ext_resource type="AudioStream" uid="uid://4rrw1lauuym" path="res://music/Song1.wav" id="30_kq58d"]
 [ext_resource type="Texture2D" uid="uid://djetbny1gk6lv" path="res://door.tres" id="30_seu75"]
+[ext_resource type="Texture2D" uid="uid://bpp3px7pjamff" path="res://art/chair_normal.png" id="31_qnost"]
 [ext_resource type="AudioStream" uid="uid://caf54veogakl6" path="res://sounds/wash.wav" id="32_0rl1p"]
 [ext_resource type="Texture2D" uid="uid://csuv2nha7jfwu" path="res://art/wall_overlay.png" id="32_jq2sk"]
 [ext_resource type="Script" uid="uid://bn6e5olqgxlti" path="res://enemy.gd" id="32_ok6jj"]
@@ -284,6 +286,10 @@ animations = [{
 "name": &"walking",
 "speed": 5.0
 }]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gngh3"]
+diffuse_texture = ExtResource("30_0n3wm")
+normal_texture = ExtResource("31_qnost")
 
 [sub_resource type="LabelSettings" id="LabelSettings_osn8f"]
 font = ExtResource("27_a6jrf")
@@ -770,11 +776,12 @@ texture = ExtResource("8_efxa6")
 position = Vector2(34, 29)
 texture = SubResource("CanvasTexture_xuqvo")
 
-[node name="Player" type="AnimatedSprite2D" parent="." unique_id=887781086]
+[node name="Player" type="AnimatedSprite2D" parent="." unique_id=887781086 node_paths=PackedStringArray("chair")]
 position = Vector2(29, 55)
 sprite_frames = SubResource("SpriteFrames_osn8f")
-animation = &"getting_up"
+animation = &"struggle"
 script = ExtResource("28_seu75")
+chair = NodePath("../Chair")
 
 [node name="Struggle1SoundPlayer" type="AudioStreamPlayer2D" parent="Player" unique_id=942718877]
 stream = ExtResource("28_0cp0l")
@@ -782,7 +789,10 @@ stream = ExtResource("28_0cp0l")
 [node name="Struggle2SoundPlayer" type="AudioStreamPlayer2D" parent="Player" unique_id=1979326068]
 stream = ExtResource("29_d2t1y")
 
-[node name="Chair" type="Sprite2D" parent="Player" unique_id=1641312017]
+[node name="Chair" type="Sprite2D" parent="." unique_id=1641312017]
+visible = false
+position = Vector2(29, 55)
+texture = SubResource("CanvasTexture_gngh3")
 
 [node name="Text" type="Node2D" parent="." unique_id=1467586237]
 

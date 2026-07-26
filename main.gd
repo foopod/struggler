@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var enemy: Enemy = $Enemy
+@onready var door: Door = $Door
 
 var suspicion: float = 0.0
 var noise: float = 0.0
@@ -91,7 +92,7 @@ func _pick_next_state() -> void:
 
 	match enemy_state:
 		EnemyState.OTHER_ROOM:
-			change_state(EnemyState.WASHING_HANDS)
+			change_state(EnemyState.CHECKING_ON_YOU)
 		EnemyState.WASHING_HANDS:
 			change_state(EnemyState.SHARPENING_KNIFE)
 		EnemyState.SHARPENING_KNIFE:
@@ -105,28 +106,34 @@ func walk_to(loc: Location) -> void:
 	var target: Vector2 = location_points[loc].global_position
 	enemy.face_toward(target)
 	enemy.play_walk()
+	enemy.start_footsteps_sound()
 	await enemy.move_to(target, WALK_SPEED)
+	enemy.stop_footsteps_sound()
 	enemy.play_idle()
 
 
 func wash_hands() -> void:
 	await walk_to(Location.SINK)
 	enemy.play_interact()
-	enemy.start_water()
-	await get_tree().create_timer(3.0).timeout
+	enemy.play_water_sound()
+	await get_tree().create_timer(6.1).timeout
 	await walk_to(Location.OFFSCREEN)
 
 
 func sharpen_knife() -> void:
 	await walk_to(Location.KNIFE_BLOCK)
 	enemy.play_interact()
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(4.2).timeout
 	await walk_to(Location.OFFSCREEN)
 
 
 func check_on_you() -> void:
 	await walk_to(Location.DOORWAY)
 	enemy.play_open_door()
+	door.play_open()
+	await get_tree().create_timer(2.5).timeout
+	enemy.play_close_door()
+	door.play_close()
 	await get_tree().create_timer(2.0).timeout
 	suspicion = max(0.0, suspicion - 20.0)
 	await walk_to(Location.OFFSCREEN)

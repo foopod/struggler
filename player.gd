@@ -9,17 +9,23 @@ extends AnimatedSprite2D
 @export var killerTiedUp: Sprite2D
 @export var killer: AnimatedSprite2D
 
+var struggling = false
+
 func is_struggling() -> bool:
-	if self.is_playing() and self.animation == "struggle" and self.speed_scale > 0.2:
-		return true
-	return false
+	return struggling
+	#if self.is_playing() and self.animation == "struggle" and self.speed_scale > 0.2:
+		#return true
+	#return false
 		
 
 func kill() -> void:
 	self.play("dead")
 
 func struggle() -> void:
+	struggling = true
 	self.play("struggle")
+	await get_tree().create_timer(2).timeout
+	struggling = false
 
 func untangle() -> void:
 	self.play("getting_up")
@@ -41,7 +47,7 @@ func free_player() -> void:
 	await move_to(Vector2(91, 57), 20.0)
 	self.visible = false
 	blackColor.color.a = 1
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(3).timeout
 	blackColor.color.a = 0
 	killerTiedUp.visible = true
 	killer.visible = false

@@ -646,11 +646,11 @@ chair_point = NodePath("Locations/Chair")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1512751299]
 texture_filter = 1
-position = Vector2(67, 41)
+position = Vector2(67, 40)
 texture = SubResource("CanvasTexture_kq58d")
 
 [node name="Light2" type="Sprite2D" parent="." unique_id=1056344402]
-position = Vector2(136, 22)
+position = Vector2(136, 21)
 texture = SubResource("CanvasTexture_qsp4k")
 
 [node name="PointLight2D" type="PointLight2D" parent="Light2" unique_id=18726721]
@@ -659,7 +659,7 @@ energy = 1.55
 texture = SubResource("GradientTexture2D_osn8f")
 
 [node name="Light" type="Sprite2D" parent="." unique_id=32711127]
-position = Vector2(47, 22)
+position = Vector2(47, 21)
 texture = SubResource("CanvasTexture_qsp4k")
 
 [node name="PointLight2D" type="PointLight2D" parent="Light" unique_id=1508775983]
@@ -670,6 +670,7 @@ texture = SubResource("GradientTexture2D_osn8f")
 script = ExtResource("4_htxhm")
 
 [node name="Decoration" type="Node2D" parent="." unique_id=1198753581]
+position = Vector2(0, -1)
 
 [node name="DirtyBox" type="Sprite2D" parent="Decoration" unique_id=166534092]
 position = Vector2(53, 53)
@@ -720,10 +721,11 @@ position = Vector2(15, 51)
 texture = SubResource("CanvasTexture_2cqfq")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1195308561]
+position = Vector2(0, -1)
 color = Color(0.4756503, 0.37458718, 0.29070678, 1)
 
 [node name="Hanging" type="Node2D" parent="." unique_id=12227695]
-position = Vector2(-4, -13)
+position = Vector2(-4, -14)
 
 [node name="PipeH" type="Sprite2D" parent="Hanging" unique_id=771940808]
 position = Vector2(104, 16)
@@ -789,7 +791,7 @@ position = Vector2(29, 55)
 texture = SubResource("CanvasTexture_gngh3")
 
 [node name="Player" type="AnimatedSprite2D" parent="." unique_id=887781086 node_paths=PackedStringArray("chair", "blackColor", "killerTiedUp", "killer")]
-position = Vector2(29, 55)
+position = Vector2(29, 54)
 sprite_frames = SubResource("SpriteFrames_osn8f")
 animation = &"struggle"
 script = ExtResource("28_seu75")
@@ -805,6 +807,7 @@ stream = ExtResource("28_0cp0l")
 stream = ExtResource("29_d2t1y")
 
 [node name="Text" type="Node2D" parent="." unique_id=1467586237]
+position = Vector2(0, -1)
 
 [node name="Button" type="Sprite2D" parent="Text" unique_id=817845836]
 position = Vector2(75, 24)
@@ -821,7 +824,7 @@ label_settings = SubResource("LabelSettings_osn8f")
 metadata/_edit_use_anchors_ = true
 
 [node name="Enemy" type="AnimatedSprite2D" parent="." unique_id=1321871364]
-position = Vector2(181, 57)
+position = Vector2(181, 56)
 sprite_frames = SubResource("SpriteFrames_mx73m")
 animation = &"killing"
 speed_scale = 1.5
@@ -843,7 +846,7 @@ stream = ExtResource("38_gngh3")
 volume_db = 2.0
 
 [node name="Door" type="AnimatedSprite2D" parent="." unique_id=1903932483]
-position = Vector2(91, 57)
+position = Vector2(91, 56)
 sprite_frames = SubResource("SpriteFrames_h12wd")
 animation = &"opening"
 script = ExtResource("37_come4")
@@ -855,10 +858,11 @@ stream = ExtResource("38_h8e4i")
 stream = ExtResource("39_4lmeg")
 
 [node name="WallOverlay" type="Sprite2D" parent="." unique_id=758663474]
-position = Vector2(102, 58)
+position = Vector2(102, 57)
 texture = SubResource("CanvasTexture_b17eg")
 
 [node name="Locations" type="Node2D" parent="." unique_id=26294945]
+position = Vector2(0, -1)
 
 [node name="Sink" type="Node2D" parent="Locations" unique_id=447393550]
 position = Vector2(132, 55)
@@ -891,7 +895,7 @@ texture = SubResource("CanvasTexture_wnkbs")
 
 [node name="Black" type="ColorRect" parent="." unique_id=1480706769]
 offset_left = -2.0
-offset_top = -1.0
+offset_top = -2.0
 offset_right = 142.0
-offset_bottom = 82.0
+offset_bottom = 81.0
 color = Color(0, 0, 0, 0)

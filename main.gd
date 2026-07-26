@@ -30,6 +30,8 @@ enum Location { OFFSCREEN, SINK, KNIFE_BLOCK, DOORWAY, CHAIR }
 }
 
 const WALK_SPEED: float = 20.0
+const STRUGGLE_COOLDOWN: float = 1.5
+const STRUGGLE_BUFFER: float = 1.5
 
 enum EnemyState {
 	WASHING_HANDS,
@@ -37,14 +39,16 @@ enum EnemyState {
 	SHARPENING_KNIFE,
 	OTHER_ROOM,
 	KILLING,
-	KILLING_FROM_DOOR,
+	TIED_UP
 }
 
 var enemy_state: EnemyState = EnemyState.OTHER_ROOM
 var is_player_dead: bool = false
 var is_player_free: bool = false
-var _busy: bool = false 
+var _busy: bool = false
 var kill_marker = false
+var _struggle_ready_at: float = 0.0
+var _struggle_buffered: bool = false
 
 func _ready() -> void:
 	change_state(EnemyState.OTHER_ROOM)
@@ -74,21 +78,32 @@ func _on_imu_data(linear_acceleration: Vector3) -> void:
 
 func _input(event):
 	if (is_player_dead or is_player_free) && event.is_action_pressed("struggle") and blackRect.color.a == 1:
-		print("restart called")
 		get_tree().change_scene_to_file("res://main.tscn")
 	if !is_player_dead && !is_player_free && event.is_action_pressed("struggle"):
-		player.struggle()
-		player.play_struggle_sound()
-		add_noise(10)
-		freedom += 2
-		await get_tree().create_timer(2).timeout
-		
-		if freedom > 100:
-			is_player_free = true
-			player.free_player()
-			
+		var now: float = Time.get_ticks_msec() / 1000.0
+		if now >= _struggle_ready_at:
+			do_struggle()
+		elif now >= _struggle_ready_at - STRUGGLE_BUFFER:
+			_struggle_buffered = true
 
-	
+
+func do_struggle() -> void:
+	if is_player_free:
+		return
+	_struggle_ready_at = Time.get_ticks_msec() / 1000.0 + STRUGGLE_COOLDOWN
+	player.struggle()
+	player.play_struggle_sound()
+	add_noise(10)
+	freedom += 5
+	await get_tree().create_timer(STRUGGLE_COOLDOWN).timeout
+
+	if freedom > 100:
+		is_player_free = true
+		player.free_player()
+	elif _struggle_buffered:
+		_struggle_buffered = false
+		if !is_player_dead && !is_player_free:
+			do_struggle()
 
 func add_noise(amount: float) -> void:
 	noise += amount
@@ -115,15 +130,17 @@ func _run_state(state: EnemyState) -> void:
 			await check_on_you()
 		EnemyState.KILLING:
 			await kill()
-		EnemyState.KILLING_FROM_DOOR:
-			await kill_from_door()
+		EnemyState.TIED_UP:
+			await get_tree().create_timer(60*10).timeout
 
 	_busy = false
-	if state != EnemyState.KILLING_FROM_DOOR:
-		_pick_next_state()
+	_pick_next_state()
 
 
 func _pick_next_state() -> void:
+	if is_player_free or is_player_dead:
+		change_state(EnemyState.TIED_UP)
+		return
 	if suspicion >= SUSPICION_MAX:
 		change_state(EnemyState.KILLING)
 		return
@@ -178,19 +195,37 @@ func sharpen_knife() -> void:
 	await walk_to(Location.OFFSCREEN)
 
 
+func watch_for_struggle(duration: float) -> bool:
+	var end_time: int = Time.get_ticks_msec() + int(duration * 1000.0)
+	while Time.get_ticks_msec() < end_time:
+		if player.is_struggling():
+			return true
+		await get_tree().process_frame
+	return player.is_struggling()
+
+
 func check_on_you() -> void:
 	await walk_to(Location.DOORWAY)
 	enemy.play_open_door()
 	door.play_open()
-	await get_tree().create_timer(2.5).timeout
-	if player.is_struggling():
-		change_state(EnemyState.KILLING_FROM_DOOR)
-		return
-	enemy.play_close_door()
-	door.play_close()
-	await get_tree().create_timer(2.0).timeout
-	suspicion = max(0.0, suspicion - 20.0)
-	await walk_to(Location.OFFSCREEN)
+	var caught: bool = await watch_for_struggle(2.5)
+	if caught:
+		await walk_to(Location.CHAIR)
+		enemy.play_killing()
+		await get_tree().create_timer(0.5).timeout
+		player.kill()
+		is_player_dead = true
+		enemy.play_kill_sound()
+		await get_tree().create_timer(2.2).timeout
+		await walk_to(Location.DOORWAY)
+		await walk_to(Location.OFFSCREEN)
+		blackRect.color.a = 1
+	else:
+		enemy.play_close_door()
+		door.play_close()
+		await get_tree().create_timer(2.0).timeout
+		suspicion = max(0.0, suspicion - 20.0)
+		await walk_to(Location.OFFSCREEN)
 
 
 func do_other_room() -> void:
@@ -202,18 +237,6 @@ func kill() -> void:
 	enemy.play_open_door()
 	door.play_open()
 	await get_tree().create_timer(2.0).timeout
-	await walk_to(Location.CHAIR)
-	enemy.play_killing()
-	await get_tree().create_timer(0.5).timeout
-	player.kill()
-	is_player_dead = true
-	enemy.play_kill_sound()
-	await get_tree().create_timer(2.2).timeout
-	await walk_to(Location.DOORWAY)
-	await walk_to(Location.OFFSCREEN)
-	blackRect.color.a = 1
-
-func kill_from_door() -> void:
 	await walk_to(Location.CHAIR)
 	enemy.play_killing()
 	await get_tree().create_timer(0.5).timeout

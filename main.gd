@@ -3,6 +3,7 @@ extends Node2D
 @onready var enemy: Enemy = $Enemy
 @onready var door: Door = $Door
 @onready var player: Player = $Player
+@onready var blackRect: ColorRect = $Black
 
 var suspicion: float = 0.0
 var noise: float = 0.0
@@ -184,4 +185,4 @@ func kill() -> void:
 	await get_tree().create_timer(2.2).timeout
 	await walk_to(Location.DOORWAY)
 	await walk_to(Location.OFFSCREEN)
-	# TODO FADE TO BLACK
+	blackRect.color.a = 1

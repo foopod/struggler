@@ -30,6 +30,7 @@ func free_player() -> void:
 	chair.visible = true
 	play_walking()
 	await move_to(Vector2(91, 57), 20.0)
+	self.visible = false
 	# TODO FADE TO BLACK
 
 func move_to(target: Vector2, speed: float) -> void:

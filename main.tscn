@@ -47,6 +47,8 @@
 [ext_resource type="AudioStream" uid="uid://gphp5f8o6jlu" path="res://sounds/open.wav" id="38_h8e4i"]
 [ext_resource type="AudioStream" uid="uid://dgo8y0s8hqjli" path="res://sounds/close.wav" id="39_4lmeg"]
 [ext_resource type="Script" uid="uid://ce1itfkwerlpb" path="res://scripts/serial.gd" id="47_wnkbs"]
+[ext_resource type="Texture2D" uid="uid://buju4q0dcxs77" path="res://art/killer_tied_up.png" id="48_0cbny"]
+[ext_resource type="Texture2D" uid="uid://dvmj1layvlml1" path="res://art/tied-up_normal.png" id="49_hrvbo"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_kq58d"]
 diffuse_texture = ExtResource("1_ig7tw")
@@ -630,6 +632,10 @@ animations = [{
 diffuse_texture = ExtResource("32_jq2sk")
 normal_texture = ExtResource("33_4k2k6")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_wnkbs"]
+diffuse_texture = ExtResource("48_0cbny")
+normal_texture = ExtResource("49_hrvbo")
+
 [node name="Node2D" type="Node2D" unique_id=1019301833 node_paths=PackedStringArray("offscreen_point", "sink_point", "knife_block_point", "doorway_point", "chair_point")]
 script = ExtResource("1_4k2k6")
 offscreen_point = NodePath("Locations/Offscreen")
@@ -874,3 +880,8 @@ autoplay = true
 [node name="Serial" type="Node" parent="." unique_id=1746652647]
 unique_name_in_owner = true
 script = ExtResource("47_wnkbs")
+
+[node name="KillerTiedUp" type="Sprite2D" parent="." unique_id=1796907408]
+visible = false
+position = Vector2(33, 56)
+texture = SubResource("CanvasTexture_wnkbs")

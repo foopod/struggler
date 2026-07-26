@@ -52,10 +52,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	noise = max(0.0, noise - NOISE_DECAY * delta)
 	suspicion = clamp(suspicion + noise * delta * 0.1, 0.0, SUSPICION_MAX)
-	
-	print("suspicion: ", suspicion)
-	print("noise: ", noise, "  state: ", enemy_state)
-
 
 func _on_imu_data(linear_acceleration: Vector3) -> void:
 	add_noise(NOISE_MULTIPLIER * linear_acceleration.length())
@@ -67,6 +63,7 @@ func _input(event):
 		player.play_struggle_sound()
 		add_noise(10)
 		await get_tree().create_timer(2).timeout
+		player.free_player()
 
 func add_noise(amount: float) -> void:
 	noise += amount
@@ -103,22 +100,21 @@ func _pick_next_state() -> void:
 	if suspicion >= SUSPICION_MAX:
 		change_state(EnemyState.KILLING)
 		return
-	if suspicion > 60.0 and enemy_state != EnemyState.CHECKING_ON_YOU:
+	if suspicion > 60.0 and randf() > 0.4 and enemy_state != EnemyState.CHECKING_ON_YOU:
 		change_state(EnemyState.CHECKING_ON_YOU)
-		return
-	if suspicion > 100.0 and enemy_state != EnemyState.CHECKING_ON_YOU:
-		change_state(EnemyState.KILLING)
 		return
 
 	match enemy_state:
 		EnemyState.OTHER_ROOM:
-			change_state(EnemyState.SHARPENING_KNIFE)
-		EnemyState.WASHING_HANDS:
-			change_state(EnemyState.SHARPENING_KNIFE)
-		EnemyState.SHARPENING_KNIFE:
-			change_state(EnemyState.CHECKING_ON_YOU)
-		EnemyState.CHECKING_ON_YOU:
-			change_state(EnemyState.OTHER_ROOM)
+			var r = randf()
+			if r < 0.25:
+				change_state(EnemyState.SHARPENING_KNIFE)
+			elif r < 0.5:
+				change_state(EnemyState.CHECKING_ON_YOU)
+			elif r < 0.75:
+				change_state(EnemyState.WASHING_HANDS)
+			else:
+				change_state(EnemyState.OTHER_ROOM)
 		_:
 			change_state(EnemyState.OTHER_ROOM)
 

@@ -54,6 +54,10 @@ func _process(delta: float) -> void:
 	suspicion = clamp(suspicion + noise * delta * 0.1, 0.0, SUSPICION_MAX)
 
 func _on_imu_data(linear_acceleration: Vector3) -> void:
+	player.speed_scale = 0.3 * linear_acceleration.length()
+	print(linear_acceleration.length())
+	if (linear_acceleration.length() > 0.1):
+		player.struggle()
 	add_noise(NOISE_MULTIPLIER * linear_acceleration.length())
 
 

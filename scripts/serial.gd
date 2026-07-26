@@ -60,7 +60,8 @@ func _on_serial_data(port: String, data: PackedByteArray) -> void:
 	var json = JSON.new()
 	var error = json.parse(json_string)
 	if error == OK:
-		var linear_acceleration = Vector3(json.data.ax, json.data.ay, json.data.az)
+		var linear_acceleration = Vector3(json.data.ax, json.data.ay, max(json.data.az - 9.8, 0))
+		print(linear_acceleration)
 		imu_data_received.emit(linear_acceleration)
 	else:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())

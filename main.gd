@@ -67,7 +67,6 @@ func _input(event):
 		player.play_struggle_sound()
 		add_noise(10)
 		await get_tree().create_timer(2).timeout
-		player.free_player()
 
 func add_noise(amount: float) -> void:
 	noise += amount

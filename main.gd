@@ -61,8 +61,15 @@ func _on_imu_data(linear_acceleration: Vector3) -> void:
 	player.speed_scale = 0.3 * linear_acceleration.length()
 	print(linear_acceleration.length())
 	if (linear_acceleration.length() > 0.1):
+		add_noise(NOISE_MULTIPLIER * linear_acceleration.length())
 		player.struggle()
-	add_noise(NOISE_MULTIPLIER * linear_acceleration.length())
+		player.play_struggle_sound()
+		freedom += 2
+		await get_tree().create_timer(2).timeout
+		
+		if freedom > 100:
+			is_player_free = true
+			player.free_player()
 
 
 func _input(event):

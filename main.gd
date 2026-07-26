@@ -9,6 +9,7 @@ var noise: float = 0.0
 
 const SUSPICION_MAX: float = 100.0
 const NOISE_DECAY: float = 5.0
+const NOISE_MULTIPLIER: float = 5.0
 
 enum Location { OFFSCREEN, SINK, KNIFE_BLOCK, DOORWAY, CHAIR }
 
@@ -44,6 +45,9 @@ var _busy: bool = false
 func _ready() -> void:
 	change_state(EnemyState.OTHER_ROOM)
 
+	var serial : Serial = %Serial
+	serial.imu_data_received.connect(_on_imu_data)
+
 
 func _process(delta: float) -> void:
 	noise = max(0.0, noise - NOISE_DECAY * delta)
@@ -51,6 +55,11 @@ func _process(delta: float) -> void:
 	
 	print("suspicion: ", suspicion)
 	print("noise: ", noise, "  state: ", enemy_state)
+
+
+func _on_imu_data(linear_acceleration: Vector3) -> void:
+	add_noise(NOISE_MULTIPLIER * linear_acceleration.length())
+
 
 func _input(event):
 	if !is_player_dead && !is_player_free && event.is_action_pressed("struggle"):

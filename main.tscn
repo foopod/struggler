@@ -32,7 +32,7 @@
 [ext_resource type="Script" uid="uid://do8pwwxd7o4i1" path="res://player.gd" id="28_seu75"]
 [ext_resource type="AudioStream" uid="uid://dpoq8unk2jhp6" path="res://sounds/struggle_2.wav" id="29_d2t1y"]
 [ext_resource type="Texture2D" uid="uid://dgk3kctgy7hp7" path="res://killer_sprites.tres" id="29_qsp4k"]
-[ext_resource type="AudioStream" uid="uid://2hpdwgpbw8is" path="res://music/Song1.wav" id="30_kq58d"]
+[ext_resource type="AudioStream" uid="uid://4rrw1lauuym" path="res://music/Song1.wav" id="30_kq58d"]
 [ext_resource type="Texture2D" uid="uid://djetbny1gk6lv" path="res://door.tres" id="30_seu75"]
 [ext_resource type="AudioStream" uid="uid://caf54veogakl6" path="res://sounds/wash.wav" id="32_0rl1p"]
 [ext_resource type="Texture2D" uid="uid://csuv2nha7jfwu" path="res://art/wall_overlay.png" id="32_jq2sk"]
@@ -41,6 +41,7 @@
 [ext_resource type="AudioStream" uid="uid://bd2skg3027x75" path="res://sounds/scrape.wav" id="34_facbu"]
 [ext_resource type="AudioStream" uid="uid://bdsnq05kbrfnq" path="res://sounds/footsteps.wav" id="35_b1qrp"]
 [ext_resource type="Script" uid="uid://cvblca4w1dtpb" path="res://door.gd" id="37_come4"]
+[ext_resource type="AudioStream" uid="uid://b1g0rmb71qduc" path="res://sounds/4_stabs.wav" id="38_gngh3"]
 [ext_resource type="AudioStream" uid="uid://gphp5f8o6jlu" path="res://sounds/open.wav" id="38_h8e4i"]
 [ext_resource type="AudioStream" uid="uid://dgo8y0s8hqjli" path="res://sounds/close.wav" id="39_4lmeg"]
 
@@ -222,7 +223,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0dhbp")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"getting_up",
 "speed": 5.0
 }, {
@@ -433,31 +434,31 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_blkrb")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_abqjc")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_6iyjs")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_4w656")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_e71vb")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_rnkwl")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_vke2r")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_uit24")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ruth0")
 }],
 "loop": 1,
@@ -772,9 +773,7 @@ texture = SubResource("CanvasTexture_xuqvo")
 [node name="Player" type="AnimatedSprite2D" parent="." unique_id=887781086]
 position = Vector2(29, 55)
 sprite_frames = SubResource("SpriteFrames_osn8f")
-animation = &"struggle"
-frame = 4
-frame_progress = 1.0
+animation = &"getting_up"
 script = ExtResource("28_seu75")
 
 [node name="Struggle1SoundPlayer" type="AudioStreamPlayer2D" parent="Player" unique_id=942718877]
@@ -782,6 +781,8 @@ stream = ExtResource("28_0cp0l")
 
 [node name="Struggle2SoundPlayer" type="AudioStreamPlayer2D" parent="Player" unique_id=1979326068]
 stream = ExtResource("29_d2t1y")
+
+[node name="Chair" type="Sprite2D" parent="Player" unique_id=1641312017]
 
 [node name="Text" type="Node2D" parent="." unique_id=1467586237]
 
@@ -799,15 +800,10 @@ text = "struggle"
 label_settings = SubResource("LabelSettings_osn8f")
 metadata/_edit_use_anchors_ = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1038645351]
-stream = ExtResource("30_kq58d")
-volume_db = 2.0
-autoplay = true
-
 [node name="Enemy" type="AnimatedSprite2D" parent="." unique_id=1321871364]
 position = Vector2(181, 57)
 sprite_frames = SubResource("SpriteFrames_mx73m")
-animation = &"closing_door"
+animation = &"killing"
 speed_scale = 1.5
 script = ExtResource("32_ok6jj")
 
@@ -817,10 +813,14 @@ volume_db = 2.0
 
 [node name="SharpenSoundPlayer" type="AudioStreamPlayer2D" parent="Enemy" unique_id=1788683128]
 stream = ExtResource("34_facbu")
+volume_db = 10.0
 
 [node name="FootstepsSoundPlayer" type="AudioStreamPlayer2D" parent="Enemy" unique_id=1551665516]
 stream = ExtResource("35_b1qrp")
-volume_db = 8.0
+
+[node name="KillSoundPlayer" type="AudioStreamPlayer2D" parent="Enemy" unique_id=834550164]
+stream = ExtResource("38_gngh3")
+volume_db = 2.0
 
 [node name="Door" type="AnimatedSprite2D" parent="." unique_id=1903932483]
 position = Vector2(91, 57)
@@ -847,10 +847,15 @@ position = Vector2(132, 55)
 position = Vector2(117, 54)
 
 [node name="Doorway" type="Node2D" parent="Locations" unique_id=1434285500]
-position = Vector2(105, 59)
+position = Vector2(105, 61)
 
 [node name="Chair" type="Node2D" parent="Locations" unique_id=1427108602]
 position = Vector2(26, 54)
 
 [node name="Offscreen" type="Node2D" parent="Locations" unique_id=365617882]
 position = Vector2(182, 57)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1203843303]
+stream = ExtResource("30_kq58d")
+volume_db = -10.0
+autoplay = true

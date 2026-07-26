@@ -5,6 +5,8 @@ extends AnimatedSprite2D
 @onready var water_sfx: AudioStreamPlayer2D = $WashSoundPlayer
 @onready var sharpen_sfx: AudioStreamPlayer2D = $SharpenSoundPlayer
 @onready var footsteps_sfx: AudioStreamPlayer2D = $FootstepsSoundPlayer
+@onready var kill_sfx: AudioStreamPlayer2D = $KillSoundPlayer
+
 
 
 func play_walk() -> void:
@@ -41,6 +43,9 @@ func move_to(target: Vector2, speed: float) -> void:
 
 func play_water_sound() -> void:
 	water_sfx.play()
+	
+func play_kill_sound() -> void:
+	kill_sfx.play()
 	
 func play_sharpen_sound() -> void:
 	sharpen_sfx.play()

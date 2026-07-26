@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var enemy: Enemy = $Enemy
 @onready var door: Door = $Door
+@onready var player: Player = $Player
 
 var suspicion: float = 0.0
 var noise: float = 0.0
@@ -36,8 +37,9 @@ enum EnemyState {
 }
 
 var enemy_state: EnemyState = EnemyState.OTHER_ROOM
+var is_player_dead: bool = false
+var is_player_free: bool = false
 var _busy: bool = false 
-
 
 func _ready() -> void:
 	change_state(EnemyState.OTHER_ROOM)
@@ -50,6 +52,11 @@ func _process(delta: float) -> void:
 	print("suspicion: ", suspicion)
 	print("noise: ", noise, "  state: ", enemy_state)
 
+func _input(event):
+	if !is_player_dead && event.is_action_pressed("struggle"):
+		player.struggle()
+		player.play_struggle_sound()
+		add_noise(10)
 
 func add_noise(amount: float) -> void:
 	noise += amount
@@ -89,16 +96,19 @@ func _pick_next_state() -> void:
 	if suspicion > 60.0 and enemy_state != EnemyState.CHECKING_ON_YOU:
 		change_state(EnemyState.CHECKING_ON_YOU)
 		return
+	if suspicion > 100.0 and enemy_state != EnemyState.CHECKING_ON_YOU:
+		change_state(EnemyState.KILLING)
+		return
 
 	match enemy_state:
 		EnemyState.OTHER_ROOM:
-			change_state(EnemyState.CHECKING_ON_YOU)
+			change_state(EnemyState.SHARPENING_KNIFE)
 		EnemyState.WASHING_HANDS:
 			change_state(EnemyState.SHARPENING_KNIFE)
 		EnemyState.SHARPENING_KNIFE:
 			change_state(EnemyState.CHECKING_ON_YOU)
 		EnemyState.CHECKING_ON_YOU:
-			change_state(EnemyState.KILLING)
+			change_state(EnemyState.OTHER_ROOM)
 		_:
 			change_state(EnemyState.OTHER_ROOM)
 
@@ -121,9 +131,17 @@ func wash_hands() -> void:
 
 
 func sharpen_knife() -> void:
+	var sharpen_count = 1
+	if randf() < 0.5:
+		sharpen_count = 2
 	await walk_to(Location.KNIFE_BLOCK)
 	enemy.play_interact()
-	await get_tree().create_timer(4.2).timeout
+	enemy.play_sharpen_sound()
+	await get_tree().create_timer(4).timeout
+	if sharpen_count == 2:
+		enemy.play_interact()
+		enemy.play_sharpen_sound()
+		await get_tree().create_timer(4).timeout
 	await walk_to(Location.OFFSCREEN)
 
 
@@ -140,10 +158,21 @@ func check_on_you() -> void:
 
 
 func do_other_room() -> void:
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(2.0).timeout
 
 
 func kill() -> void:
+	await walk_to(Location.DOORWAY)
+	enemy.play_open_door()
+	door.play_open()
+	await get_tree().create_timer(2.0).timeout
 	await walk_to(Location.CHAIR)
 	enemy.play_killing()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(0.5).timeout
+	player.kill()
+	is_player_dead = true
+	enemy.play_kill_sound()
+	await get_tree().create_timer(2.2).timeout
+	await walk_to(Location.DOORWAY)
+	await walk_to(Location.OFFSCREEN)
+	# TODO FADE TO BLACK

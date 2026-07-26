@@ -5,6 +5,9 @@ extends AnimatedSprite2D
 @onready var struggle1_sfx: AudioStreamPlayer2D = $Struggle1SoundPlayer
 @onready var struggle2_sfx: AudioStreamPlayer2D = $Struggle2SoundPlayer
 @export var chair: Node2D
+@export var blackColor: ColorRect
+@export var killerTiedUp: Sprite2D
+@export var killer: AnimatedSprite2D
 
 func kill() -> void:
 	self.play("dead")
@@ -31,7 +34,13 @@ func free_player() -> void:
 	play_walking()
 	await move_to(Vector2(91, 57), 20.0)
 	self.visible = false
-	# TODO FADE TO BLACK
+	blackColor.color.a = 1
+	await get_tree().create_timer(1).timeout
+	blackColor.color.a = 0
+	killerTiedUp.visible = true
+	killer.visible = false
+	await get_tree().create_timer(5).timeout
+	blackColor.color.a = 1
 
 func move_to(target: Vector2, speed: float) -> void:
 	var distance := global_position.distance_to(target)

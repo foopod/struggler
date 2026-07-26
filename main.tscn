@@ -118,6 +118,10 @@ normal_texture = ExtResource("23_kq58d")
 diffuse_texture = ExtResource("7_4c57u")
 normal_texture = ExtResource("26_lswn8")
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_gngh3"]
+diffuse_texture = ExtResource("30_0n3wm")
+normal_texture = ExtResource("31_qnost")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rm4vd"]
 atlas = ExtResource("26_a6jrf")
 region = Rect2(96, 0, 32, 32)
@@ -289,10 +293,6 @@ animations = [{
 "name": &"walking",
 "speed": 5.0
 }]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_gngh3"]
-diffuse_texture = ExtResource("30_0n3wm")
-normal_texture = ExtResource("31_qnost")
 
 [sub_resource type="LabelSettings" id="LabelSettings_osn8f"]
 font = ExtResource("27_a6jrf")
@@ -783,23 +783,26 @@ texture = ExtResource("8_efxa6")
 position = Vector2(34, 29)
 texture = SubResource("CanvasTexture_xuqvo")
 
-[node name="Player" type="AnimatedSprite2D" parent="." unique_id=887781086 node_paths=PackedStringArray("chair")]
+[node name="Chair" type="Sprite2D" parent="." unique_id=1641312017]
+visible = false
+position = Vector2(29, 55)
+texture = SubResource("CanvasTexture_gngh3")
+
+[node name="Player" type="AnimatedSprite2D" parent="." unique_id=887781086 node_paths=PackedStringArray("chair", "blackColor", "killerTiedUp", "killer")]
 position = Vector2(29, 55)
 sprite_frames = SubResource("SpriteFrames_osn8f")
 animation = &"struggle"
 script = ExtResource("28_seu75")
 chair = NodePath("../Chair")
+blackColor = NodePath("../Black")
+killerTiedUp = NodePath("../KillerTiedUp")
+killer = NodePath("../Enemy")
 
 [node name="Struggle1SoundPlayer" type="AudioStreamPlayer2D" parent="Player" unique_id=942718877]
 stream = ExtResource("28_0cp0l")
 
 [node name="Struggle2SoundPlayer" type="AudioStreamPlayer2D" parent="Player" unique_id=1979326068]
 stream = ExtResource("29_d2t1y")
-
-[node name="Chair" type="Sprite2D" parent="." unique_id=1641312017]
-visible = false
-position = Vector2(29, 55)
-texture = SubResource("CanvasTexture_gngh3")
 
 [node name="Text" type="Node2D" parent="." unique_id=1467586237]
 
@@ -885,3 +888,10 @@ script = ExtResource("47_wnkbs")
 visible = false
 position = Vector2(33, 56)
 texture = SubResource("CanvasTexture_wnkbs")
+
+[node name="Black" type="ColorRect" parent="." unique_id=1480706769]
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 142.0
+offset_bottom = 82.0
+color = Color(0, 0, 0, 0)

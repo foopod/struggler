@@ -10,7 +10,7 @@ extends AnimatedSprite2D
 @export var killer: AnimatedSprite2D
 
 func is_struggling() -> bool:
-	if self.animation == "struggle" and self.speed_scale > 0.2:
+	if self.is_playing() and self.animation == "struggle" and self.speed_scale > 0.2:
 		return true
 	return false
 		

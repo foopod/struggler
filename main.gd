@@ -66,15 +66,22 @@ func _on_imu_data(linear_acceleration: Vector3) -> void:
 
 
 func _input(event):
+	if (is_player_dead or is_player_free) && event.is_action_pressed("struggle") and blackRect.color.a == 1:
+		print("restart called")
+		get_tree().change_scene_to_file("res://main.tscn")
 	if !is_player_dead && !is_player_free && event.is_action_pressed("struggle"):
 		player.struggle()
 		player.play_struggle_sound()
 		add_noise(10)
-		freedom += 10
+		freedom += 2
 		await get_tree().create_timer(2).timeout
 		
 		if freedom > 100:
+			is_player_free = true
 			player.free_player()
+			
+
+	
 
 func add_noise(amount: float) -> void:
 	noise += amount

@@ -7,6 +7,7 @@ extends Node2D
 
 var suspicion: float = 0.0
 var noise: float = 0.0
+var freedom: float = 0.0
 
 const SUSPICION_MAX: float = 100.0
 const NOISE_DECAY: float = 5.0
@@ -36,12 +37,14 @@ enum EnemyState {
 	SHARPENING_KNIFE,
 	OTHER_ROOM,
 	KILLING,
+	KILLING_FROM_DOOR,
 }
 
 var enemy_state: EnemyState = EnemyState.OTHER_ROOM
 var is_player_dead: bool = false
 var is_player_free: bool = false
 var _busy: bool = false 
+var kill_marker = false
 
 func _ready() -> void:
 	change_state(EnemyState.OTHER_ROOM)
@@ -67,7 +70,11 @@ func _input(event):
 		player.struggle()
 		player.play_struggle_sound()
 		add_noise(10)
+		freedom += 10
 		await get_tree().create_timer(2).timeout
+		
+		if freedom > 100:
+			player.free_player()
 
 func add_noise(amount: float) -> void:
 	noise += amount
@@ -94,10 +101,12 @@ func _run_state(state: EnemyState) -> void:
 			await check_on_you()
 		EnemyState.KILLING:
 			await kill()
+		EnemyState.KILLING_FROM_DOOR:
+			await kill_from_door()
 
 	_busy = false
-
-	_pick_next_state()
+	if state != EnemyState.KILLING_FROM_DOOR:
+		_pick_next_state()
 
 
 func _pick_next_state() -> void:
@@ -160,6 +169,9 @@ func check_on_you() -> void:
 	enemy.play_open_door()
 	door.play_open()
 	await get_tree().create_timer(2.5).timeout
+	if player.is_struggling():
+		change_state(EnemyState.KILLING_FROM_DOOR)
+		return
 	enemy.play_close_door()
 	door.play_close()
 	await get_tree().create_timer(2.0).timeout
@@ -176,6 +188,18 @@ func kill() -> void:
 	enemy.play_open_door()
 	door.play_open()
 	await get_tree().create_timer(2.0).timeout
+	await walk_to(Location.CHAIR)
+	enemy.play_killing()
+	await get_tree().create_timer(0.5).timeout
+	player.kill()
+	is_player_dead = true
+	enemy.play_kill_sound()
+	await get_tree().create_timer(2.2).timeout
+	await walk_to(Location.DOORWAY)
+	await walk_to(Location.OFFSCREEN)
+	blackRect.color.a = 1
+
+func kill_from_door() -> void:
 	await walk_to(Location.CHAIR)
 	enemy.play_killing()
 	await get_tree().create_timer(0.5).timeout
